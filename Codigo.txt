@@ -1,0 +1,94 @@
+import nltk
+	
+from __future__ import division  # Python 2 users only
+import nltk, re, pprint
+from nltk import word_tokenize
+
+from nltk.corpus import PlaintextCorpusReader
+corpus_root = "C:\Users\jpradas\Documents\MASTER\TFM\data"
+newcorpus = PlaintextCorpusReader(corpus_root, '.*')
+newcorpus.fileids()
+
+-- recorriendo todos los Corpus
+for fileid in newcorpus.fileids():
+     num_chars = len(newcorpus.raw(fileid)) [1]
+     num_words = len(newcorpus.words(fileid))
+     num_sents = len(newcorpus.sents(fileid))
+     num_vocab = len(set(w.lower() for w in newcorpus.words(fileid)))
+     print(round(num_chars/num_words), round(num_words/num_sents), round(num_words/num_vocab), fileid)
+
+from nltk.corpus import stopwords
+stop = stopwords.words('spanish')
+all_words=nltk.FreqDist(w.lower() for w in newcorpus.words(fileid) if w.lower() not in nltk.corpus.stopwords.words('spanish'))
+
+cadena=newcorpus.raw(fileid)
+tokens = nltk.word_tokenize(cadena)
+
+
+
+**
+ nltk.FreqDist(newcorpus.words(fileid))
+ (for w in newcorpus.words(fileid) if w.lower() not in nltk.corpus.stopwords.words('spanish'))
+
+pregunta="¿Cuantas cartas se reparten al principio?"
+pregunta_filtrada = [word for word in pregunta.split() if word not in stop]
+
+
+--LECTURA DE TEXTO
+text=newcorpus.raw("aton.txt") //Falla por el UTF8
+o
+path = nltk.data.find('C:/TFM/data/hive.txt')
+raw = open(path, 'rU').read()
+
+-- Tokenizamos
+tokens = word_tokenize(raw)
+
+--Convertimos en Texto
+text = nltk.Text(tokens)
+text.concordance("fichas")
+ text.similar('news')
+
+-- Busqueda en texto	
+>>> phrase = 'And now for something completely different'
+>>> if 'thing' in phrase:
+...     print('found "thing"')
+
+-- OPERACIONES CON CORPUS
+Example	Description
+fileids()	the files of the corpus
+fileids([categories])	the files of the corpus corresponding to these categories
+categories()	the categories of the corpus
+categories([fileids])	the categories of the corpus corresponding to these files
+raw()	the raw content of the corpus
+raw(fileids=[f1,f2,f3])	the raw content of the specified files
+raw(categories=[c1,c2])	the raw content of the specified categories
+words()	the words of the whole corpus
+words(fileids=[f1,f2,f3])	the words of the specified fileids
+words(categories=[c1,c2])	the words of the specified categories
+sents()	the sentences of the whole corpus
+sents(fileids=[f1,f2,f3])	the sentences of the specified fileids
+sents(categories=[c1,c2])	the sentences of the specified categories
+abspath(fileid)	the location of the given file on disk
+encoding(fileid)	the encoding of the file (if known)
+open(fileid)	open a stream for reading the given corpus file
+root	if the path to the root of locally installed corpus
+readme()	the contents of the README file of the corpus
+
+--OPERACIONES CON STRINGS
+Method	Functionality
+s.find(t)	index of first instance of string t inside s (-1 if not found)
+s.rfind(t)	index of last instance of string t inside s (-1 if not found)
+s.index(t)	like s.find(t) except it raises ValueError if not found
+s.rindex(t)	like s.rfind(t) except it raises ValueError if not found
+s.join(text)	combine the words of the text into a string using s as the glue
+s.split(t)	split s into a list wherever a t is found (whitespace by default)
+s.splitlines()	split s into a list of strings, one per line
+s.lower()	a lowercased version of the string s
+s.upper()	an uppercased version of the string s
+s.title()	a titlecased version of the string s
+s.strip()	a copy of s without leading or trailing whitespace
+s.replace(t, u)	replace instances of t with u inside s
+
+
+
+
